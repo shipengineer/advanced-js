@@ -1,0 +1,27 @@
+#reviewForm{
+    width: 360px;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    gap: 20px;
+}
+.reviewText{
+    height: 100px;
+}
+.reviewBody{
+    width: 360px;
+    display: flex;
+    gap: 10px;
+    flex-direction: column;
+}
+.product{
+    border: 1px solid #dfdfdf;
+}
+.review{
+border:1px solid #000 ;
+}
+.review>p{
+    margin: 5px 5px;
+    padding: 3px;
+    border: 1px #8870c0 solid;
+}
