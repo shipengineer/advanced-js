@@ -12,6 +12,9 @@ const fillLocalStorage = (url) => {
       return response.json();
     })
     .then((data) => {
+      data.forEach((product) => {
+        localStorage.setItem(product.id, JSON.stringify(product));
+      });
       localStorage.setItem('productBase', JSON.stringify(data));
     });
 };
@@ -71,19 +74,16 @@ function render() {
 }
 function toggleReviews(event, id) {
   const target = event.target;
-  console.log(target.parentNode.classList.contains('topProduct'));
   if (target.parentNode.classList.contains('topProduct')) {
-    localStorage.getItem();
-    const product = topThree.find((elem) => {
-      elem.id === id;
+    const product = localStorage.getItem(`${id}`);
+    product.reviews.forEach((review) => {
+      topReviewsContainer.insertAdjacentHTML(
+        'afterbegin',
+        `
+<div class='review' id='${}
+`
+      );
     });
-    console.log(product);
-    topReviewsContainer.insertAdjacentHTML(
-      'afterbegin',
-      `
-    <div class='topReview' id=
-    `
-    );
   }
 }
 function stateHandler(id) {}
