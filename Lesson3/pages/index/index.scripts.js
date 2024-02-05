@@ -1,10 +1,10 @@
 const url =
-  'https://my-json-server.typicode.com/shipengineer/JSON_server/products';
-const topContainer = document.querySelector('.bestSales');
-const takinTopContainer = document.querySelector('.takinTop');
-const othersContainer = document.querySelector('.others');
-const topReviewsContainer = document.querySelector('.bestSalesReviews');
-const takinTopReviewsContainer = document.querySelector('.takinTopsReviews');
+  "https://my-json-server.typicode.com/shipengineer/JSON_server/products";
+const topContainer = document.querySelector(".bestSales");
+const takinTopContainer = document.querySelector(".takinTop");
+const othersContainer = document.querySelector(".others");
+const topReviewsContainer = document.querySelector(".bestSalesReviews");
+const takinTopReviewsContainer = document.querySelector(".takinTopsReviews");
 
 const fillLocalStorage = (url) => {
   fetch(url)
@@ -15,14 +15,14 @@ const fillLocalStorage = (url) => {
       data.forEach((product) => {
         localStorage.setItem(product.id, JSON.stringify(product));
       });
-      localStorage.setItem('productBase', JSON.stringify(data));
+      localStorage.setItem("productBase", JSON.stringify(data));
     });
 };
 
 fillLocalStorage(url);
 
 function render() {
-  const changeableBase = JSON.parse(localStorage.getItem('productBase'));
+  const changeableBase = JSON.parse(localStorage.getItem("productBase"));
   const topThree = [];
   const takinTop = [];
   const others = [];
@@ -50,7 +50,7 @@ function render() {
   console.log(takinTop);
   takinTop.forEach((product) => {
     takinTopContainer.insertAdjacentHTML(
-      'beforeend',
+      "beforeend",
       `
   <div class='takinTopProduct' id = ${product.id}>
   <a href="/Lesson3/pages/product/product.html" onClick='stateHandler(${product.id})'>${product.name}</a>
@@ -62,7 +62,7 @@ function render() {
   });
   others.forEach((product) => {
     othersContainer.insertAdjacentHTML(
-      'beforeend',
+      "beforeend",
       `
   <div class='otherProduct' id = ${product.id}>
   <a href="/Lesson3/pages/product/product.html" onClick='stateHandler(event,${product.id})'>${product.name}</a>
@@ -74,17 +74,50 @@ function render() {
 }
 function toggleReviews(event, id) {
   const target = event.target;
-  if (target.parentNode.classList.contains('topProduct')) {
-    const product = localStorage.getItem(`${id}`);
+  if (target.parentNode.classList.contains("topProduct")) {
+    topReviewsContainer.innerHTML = "";
+    takinTopReviewsContainer.innerHTML = "";
+    const product = JSON.parse(localStorage.getItem(`${id}`));
+
     product.reviews.forEach((review) => {
       topReviewsContainer.insertAdjacentHTML(
-        'afterbegin',
+        "afterbegin",
         `
-<div class='review' id='${}
+<div class='review' id='${"review" + review.id}>
+<div class='reviewAuthor'>${review.user} </div>
+<div class = 'reviewRating'>Оценка: ${review.rating}</div>
+<div class = 'reviewText'>${review.comment}</div>
+</div>
+`
+      );
+    });
+  } else if (target.parentNode.classList.contains("takinTopProduct")) {
+    topReviewsContainer.innerHTML = "";
+    takinTopReviewsContainer.innerHTML = "";
+    const product = JSON.parse(localStorage.getItem(`${id}`));
+
+    product.reviews.forEach((review) => {
+      takinTopReviewsContainer.insertAdjacentHTML(
+        "afterbegin",
+        `
+<div class='review' id='${"review" + review.id}' data-review-id=${review.id}>
+<div class='reviewAuthor'>${review.user} </div>
+<div class = 'reviewRating'>Оценка: ${review.rating}</div>
+<div class = 'reviewText'>${review.comment}</div>
+<button onClick="removeReview(event,${product.id})">Удалить отзыв</button>
+</div>
 `
       );
     });
   }
+}
+function removeReview(event, product) {
+  const productToRemove = JSON.parse(localStorage.getItem(product));
+  const reviewId = event.target.parentNode.dataset.reviewId;
+  console.log(productToRemove.reviews.find((review) => review.id === reviewId));
+  // delete productToRemove.reviews[reviewId];
+  localStorage.setItem(product, JSON.stringify(productToRemove));
+  event.target.parentNode.remove();
 }
 function stateHandler(id) {}
 render();
