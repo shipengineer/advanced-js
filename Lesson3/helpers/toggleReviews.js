@@ -5,7 +5,9 @@ function toggleReviews(event, id) {
   if (target.parentNode.classList.contains('topProduct')) {
     topReviewsContainer.innerHTML = '';
     takinTopReviewsContainer.innerHTML = '';
-    const product = JSON.parse(localStorage.getItem(`${id}`));
+    const product = JSON.parse(localStorage.getItem(`productBase`)).find(
+      (product) => product.id === id
+    );
 
     product.reviews.forEach((review) => {
       topReviewsContainer.insertAdjacentHTML(
@@ -22,7 +24,9 @@ function toggleReviews(event, id) {
   } else if (target.parentNode.classList.contains('takinTopProduct')) {
     topReviewsContainer.innerHTML = '';
     takinTopReviewsContainer.innerHTML = '';
-    const product = JSON.parse(localStorage.getItem(`${id}`));
+    const product = JSON.parse(localStorage.getItem(`productBase`)).find(
+      (product) => product.id === id
+    );
 
     product.reviews.forEach((review) => {
       takinTopReviewsContainer.insertAdjacentHTML(
