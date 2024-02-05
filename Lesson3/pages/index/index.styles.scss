@@ -1,0 +1,78 @@
+@font-face {
+  font-family: 'Protest Guerrilla', sans-serif;
+  src: url(https://fonts.googleapis.com/css2?family=Protest+Guerrilla&display=swap);
+}
+body {
+  font-family: 'Protest Guerrilla', sans-serif;
+}
+.productContainer {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  .bestSales {
+    display: flex;
+    gap: 10px;
+    flex: 0 0 100%;
+    .topProduct {
+      border: 2px solid #123df1;
+      padding: 10px;
+      flex: 1 0 30%;
+    }
+  }
+  .bestSalesReviews {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    .review {
+      margin-top: 10px;
+      border: 2px solid blue;
+      gap: 5px;
+      display: flex;
+      flex-direction: column;
+      flex: 1 1 30%;
+      & > div {
+        display: flex;
+      }
+    }
+  }
+  .takinTop {
+    margin-top: 10px;
+    display: flex;
+    flex: 1 0 100%;
+    flex-wrap: wrap;
+    gap: 5px;
+    .takinTopProduct {
+      padding: 10px;
+      flex: 1 0 30%;
+      border: 2px dotted darkblue;
+    }
+  }
+  .takinTopsReviews {
+    flex: 1 0 100%;
+    .review {
+      margin-top: 10px;
+      border: 2px solid blue;
+      gap: 5px;
+      display: flex;
+      flex-direction: column;
+      flex: 1 1 30%;
+      & > div {
+        display: flex;
+      }
+    }
+  }
+  .others {
+    display: flex;
+    gap: 10px;
+    flex: 0 0 100%;
+    flex-wrap: wrap;
+    .otherProduct {
+      border: 1px dashed grey;
+      padding: 5px;
+      display: flex;
+      flex-direction: column;
+      flex: 1 1 30%;
+      justify-content: space-between;
+    }
+  }
+}

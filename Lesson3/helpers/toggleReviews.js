@@ -13,7 +13,7 @@ function toggleReviews(event, id) {
       topReviewsContainer.insertAdjacentHTML(
         'afterbegin',
         `
-  <div class='review' id='${'review' + review.id}>
+  <div class='review' id='${'review' + review.id}'>
   <div class='reviewAuthor'>${review.user} </div>
   <div class = 'reviewRating'>Оценка: ${review.rating}</div>
   <div class = 'reviewText'>${review.comment}</div>

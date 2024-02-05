@@ -1,1 +1,32 @@
-/*# sourceMappingURL=product.styles.css.map */
+body {
+  background-color: lightblue;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande", "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+}
+
+#form {
+  display: flex;
+  flex-direction: column;
+  width: 720px;
+  gap: 15px;
+  align-items: center;
+}
+#form > * {
+  width: 520px;
+}
+#form input {
+  height: 100px;
+  padding: 10px;
+  display: flex;
+}
+#form button {
+  background-color: olivedrab;
+  color: white;
+}
+
+a {
+  text-decoration: none;
+  color: palevioletred;
+}
+a::before {
+  content: "<<";
+}/*# sourceMappingURL=product.styles.css.map */
